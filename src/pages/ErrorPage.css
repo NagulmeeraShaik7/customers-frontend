@@ -1,0 +1,59 @@
+.error-page-container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #f8fafc 60%, #e3f2fd 100%);
+}
+.error-card {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 36px rgba(25, 118, 210, 0.18);
+  padding: 3rem 3.5rem 2.5rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  max-width: 400px;
+  animation: fadeInCard 0.7s cubic-bezier(.4,0,.2,1);
+}
+.error-code {
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: #e53935;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+}
+.error-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1976d2;
+  margin-bottom: 0.5rem;
+}
+.error-message {
+  font-size: 1.15rem;
+  color: #607d8b;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+.error-home-btn {
+  background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.8rem 2.1rem;
+  font-size: 1.13rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.13);
+  letter-spacing: 0.5px;
+}
+.error-home-btn:hover {
+  background: linear-gradient(90deg, #1565c0 60%, #1976d2 100%);
+  box-shadow: 0 4px 16px rgba(25, 118, 210, 0.18);
+}
+@keyframes fadeInCard {
+  from { opacity: 0; transform: scale(0.97) translateY(24px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}

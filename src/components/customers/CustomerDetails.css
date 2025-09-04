@@ -1,0 +1,127 @@
+/* Stylish card/info styles for customer and address details */
+.customer-info-card {
+  background: linear-gradient(120deg, #f8fafc 60%, #e3f2fd 100%);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(25, 118, 210, 0.13), 0 1.5px 0 #e3e9f3 inset;
+  padding: 2.2rem 2.7rem;
+  margin-bottom: 2.5rem;
+  max-width: 650px;
+  animation: fadeInCard 0.7s cubic-bezier(.4,0,.2,1);
+  transition: box-shadow 0.2s;
+}
+@keyframes fadeInCard {
+  from { opacity: 0; transform: scale(0.97) translateY(24px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.info-label {
+  color: #1976d2;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+.info-value {
+  color: #263238;
+  font-weight: 400;
+}
+.address-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.address-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.08);
+  padding: 1rem 1.5rem;
+  min-width: 260px;
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.address-main {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #1976d2;
+}
+.address-meta {
+  font-size: 0.95rem;
+  color: #607d8b;
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+.primary-badge {
+  background: #1976d2;
+  color: #fff;
+  border-radius: 4px;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+}
+.address-actions {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+.address-form-card {
+  background: #f5f7fa;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.05);
+  padding: 1rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Toggle styles */
+.only-one-address-toggle {
+  margin: 1.5rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.toggle-label {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+  gap: 0.5rem;
+}
+.toggle-label input[type="checkbox"] {
+  accent-color: #1976d2;
+  width: 18px;
+  height: 18px;
+  margin-right: 0.5rem;
+}
+.toggle-hint {
+  color: #607d8b;
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
+.toggle-error {
+  color: #e53935;
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
+/* CustomerDetails styles */
+.customer-details-container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 700px;
+}
+.customer-details-container h2 {
+  color: #1976d2;
+  margin-bottom: 1.5rem;
+}
+.customer-details-section {
+  margin-bottom: 1.5rem;
+}
+.customer-details-label {
+  font-weight: 500;
+  color: #37474f;
+  margin-right: 0.5rem;
+}
+.customer-details-value {
+  color: #263238;
+}
