@@ -1,21 +1,11 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { customerApi } from "../../api/customerApi";
+import { MdPerson, MdPhone, MdEmail, MdArrowDropDown } from "react-icons/md";
+import Spinner from "../common/Spinner";
 import "./CustomerForm.css";
 
-// Example SVG icons for customer fields
-const UserIcon = () => (
-  <svg className="input-icon" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="8" r="4" stroke="#1976d2" strokeWidth="2" fill="none"/><path d="M4 20c0-4 8-4 8-4s8 0 8 4" stroke="#1976d2" strokeWidth="2" fill="none"/></svg>
-);
-const PhoneIcon = () => (
-  <svg className="input-icon" viewBox="0 0 24 24" width="18" height="18"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z" stroke="#1976d2" strokeWidth="2" fill="none"/></svg>
-);
-const EmailIcon = () => (
-  <svg className="input-icon" viewBox="0 0 24 24" width="18" height="18"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#1976d2" strokeWidth="2" fill="none"/><path d="M3 7l9 6 9-6" stroke="#1976d2" strokeWidth="2" fill="none"/></svg>
-);
-
-const CustomerForm = ({ initialData = {}, isEdit = false, customerId }) => {
+const CustomerForm = ({ initialData = {}, isEdit = false, customerId, onCancel }) => {
   const [form, setForm] = useState({
     firstName: initialData.firstName || "",
     lastName: initialData.lastName || "",
@@ -52,6 +42,7 @@ const CustomerForm = ({ initialData = {}, isEdit = false, customerId }) => {
     }
     setLoading(true);
     setError("");
+    setSuccess("");
     try {
       if (isEdit && customerId) {
         await customerApi.update(customerId, form);
@@ -71,70 +62,132 @@ const CustomerForm = ({ initialData = {}, isEdit = false, customerId }) => {
     }
   };
 
+  const handleCancel = () => {
+    //console.log("Cancel button clicked, onCancel prop:", onCancel);
+    try {
+      if (onCancel) {
+        //console.log("Executing provided onCancel function");
+        onCancel();
+      } else {
+        //console.log("No onCancel prop, navigating to /customers");
+        navigate("/customers"); // Fallback to a specific route
+      }
+    } catch (err) {
+      console.error("Error in handleCancel:", err);
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="customer-form-card" autoComplete="off">
-      <div className="customer-form-title">{isEdit ? "Edit Customer" : "Add Customer"}</div>
-      <div className="customer-form-group">
-        <span className="input-icon"><UserIcon /></span>
-        <input
-          className="customer-form-input"
-          name="firstName"
-          placeholder=" "
-          value={form.firstName}
-          onChange={handleChange}
-          required
-        />
-        <label className="customer-form-label">First Name *</label>
-      </div>
-      <div className="customer-form-group">
-        <span className="input-icon"><UserIcon /></span>
-        <input
-          className="customer-form-input"
-          name="lastName"
-          placeholder=" "
-          value={form.lastName}
-          onChange={handleChange}
-          required
-        />
-        <label className="customer-form-label">Last Name *</label>
-      </div>
-      <div className="customer-form-group">
-        <span className="input-icon"><PhoneIcon /></span>
-        <input
-          className="customer-form-input"
-          name="phone"
-          placeholder=" "
-          value={form.phone}
-          onChange={handleChange}
-          required
-        />
-        <label className="customer-form-label">Phone (10 digits) *</label>
-      </div>
-      <div className="customer-form-group">
-        <span className="input-icon"><EmailIcon /></span>
-        <input
-          className="customer-form-input"
-          name="email"
-          placeholder=" "
-          value={form.email}
-          onChange={handleChange}
-          required
-        />
-        <label className="customer-form-label">Email *</label>
-      </div>
-      <select name="accountType" value={form.accountType} onChange={handleChange} className="address-select" style={{marginBottom:'0.7rem'}}>
-        <option value="standard">Standard</option>
-        <option value="premium">Premium</option>
-        <option value="enterprise">Enterprise</option>
-      </select>
-      <div className="address-form-actions">
-        <button className="address-form-btn" type="submit" disabled={loading}>
-          {loading ? (isEdit ? "Saving..." : "Adding...") : (isEdit ? "Save" : "Add Customer")}
-        </button>
-      </div>
-      {error && <div className="address-form-error">{error}</div>}
-      {success && <div className="address-form-success">{success}</div>}
-    </form>
+    <div className="customer-form-card">
+      <h2 className="customer-form-title">{isEdit ? "Edit Customer" : "Add Customer"}</h2>
+      {error && (
+        <div className="customer-form-error">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" className="message-icon">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="#e53935" />
+          </svg>
+          {error}
+        </div>
+      )}
+      {success && (
+        <div className="customer-form-success">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" className="message-icon">
+            <path d="M9 16.2l-3.5-3.5 1.4-1.4L9 13.4l8.6-8.6 1.4 1.4L9 16.2z" fill="#388e3c" />
+          </svg>
+          {success}
+        </div>
+      )}
+      {loading ? (
+        <div className="spinner-container">
+          <Spinner />
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="customer-form" autoComplete="off">
+          <div className="customer-form-group">
+            <MdPerson className="input-icon" />
+            <input
+              className="customer-form-input"
+              name="firstName"
+              placeholder=" "
+              value={form.firstName}
+              onChange={handleChange}
+              required
+              aria-label="First Name"
+            />
+            <label className="customer-form-label">First Name *</label>
+          </div>
+          <div className="customer-form-group">
+            <MdPerson className="input-icon" />
+            <input
+              className="customer-form-input"
+              name="lastName"
+              placeholder=" "
+              value={form.lastName}
+              onChange={handleChange}
+              required
+              aria-label="Last Name"
+            />
+            <label className="customer-form-label">Last Name *</label>
+          </div>
+          <div className="customer-form-group">
+            <MdPhone className="input-icon" />
+            <input
+              className="customer-form-input"
+              name="phone"
+              placeholder=" "
+              value={form.phone}
+              onChange={handleChange}
+              required
+              aria-label="Phone"
+            />
+            <label className="customer-form-label">Phone (10 digits) *</label>
+          </div>
+          <div className="customer-form-group">
+            <MdEmail className="input-icon" />
+            <input
+              className="customer-form-input"
+              name="email"
+              placeholder=" "
+              value={form.email}
+              onChange={handleChange}
+              required
+              aria-label="Email"
+            />
+            <label className="customer-form-label">Email *</label>
+          </div>
+          <div className="customer-form-group">
+            <select
+              name="accountType"
+              value={form.accountType}
+              onChange={handleChange}
+              className="customer-select"
+              aria-label="Account Type"
+            >
+              <option value="standard">Standard</option>
+              <option value="premium">Premium</option>
+              <option value="enterprise">Enterprise</option>
+            </select>
+            <MdArrowDropDown className="select-icon" />
+          </div>
+          <div className="customer-form-actions">
+            <button
+              type="button"
+              className="customer-form-cancel"
+              onClick={handleCancel}
+              aria-label="Cancel"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="customer-form-btn"
+              disabled={loading}
+            >
+              {isEdit ? "Save" : "Add Customer"}
+            </button>
+          </div>
+        </form>
+      )}
+    </div>
   );
 };
 

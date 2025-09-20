@@ -1,0 +1,56 @@
+.only-one-address-toggle {
+  background: #f8fafc;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
+  padding: 1.2rem 2rem;
+  margin: 1.5rem 0 2rem 0;
+  max-width: 500px;
+  border: 1px solid #e3f2fd;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 1.08rem;
+  color: #1976d2;
+  cursor: pointer;
+  gap: 0.5rem;
+  user-select: none;
+}
+
+.toggle-label input[type="checkbox"] {
+  accent-color: #1976d2;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.toggle-label input[type="checkbox"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.toggle-hint {
+  color: #607d8b;
+  font-size: 0.97rem;
+  margin-top: 4px;
+}
+
+.toggle-error {
+  color: #e53935;
+  font-size: 0.97rem;
+  margin-top: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .only-one-address-toggle {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .toggle-label {
+    font-size: 1rem;
+  }
+}

@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { customerApi } from "./api/customerApi";
 import CustomerDetails from "./components/customers/CustomerDetails";
 import ErrorPage from "./pages/ErrorPage";
+import Spinner from "./components/common/Spinner";
 import "./App.css";
 
 const NavButtons = () => {
@@ -50,7 +51,7 @@ const App = () => {
           navigate(`/error?code=${code}&message=${encodeURIComponent(message)}`);
         });
     }, [id, navigate]);
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div><Spinner/></div>;
     return <CustomerForm initialData={initialData} isEdit={true} customerId={id} />;
   };
 

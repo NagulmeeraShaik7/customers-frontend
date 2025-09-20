@@ -1,0 +1,72 @@
+.add-address-page {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(25, 118, 210, 0.1);
+}
+
+.add-address-page h2 {
+  color: #1976d2;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.add-address-page label {
+  font-weight: 500;
+  color: #1976d2;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.address-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fafafa;
+  margin-bottom: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.address-select:focus {
+  outline: none;
+  border-color: #1976d2;
+  background: #ffffff;
+}
+
+.success-message,
+.error-message {
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.success-message {
+  background: #e8f5e8;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .add-address-page {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .add-address-page h2 {
+    font-size: 1.25rem;
+  }
+}

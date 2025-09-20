@@ -1,9 +1,8 @@
-/* Modern stylish form and card styles for customer form */
 .customer-form-card {
   background: #fff;
   border-radius: 22px;
   box-shadow: 0 8px 36px rgba(25, 118, 210, 0.18);
-  padding: 2.7rem 2.7rem 2.2rem 2.7rem;
+  padding: 2.7rem;
   margin: 2.7rem auto;
   max-width: 600px;
   min-width: 320px;
@@ -12,6 +11,7 @@
   flex-direction: column;
   gap: 1.2rem;
 }
+
 .customer-form-title {
   color: #1976d2;
   font-size: 1.6rem;
@@ -19,27 +19,35 @@
   margin-bottom: 1.7rem;
   letter-spacing: 0.5px;
 }
+
+.customer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .customer-form-group {
-  margin-bottom: 1.2rem;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  position: relative;
+  margin-bottom: 1.2rem;
   width: 100%;
 }
+
 .customer-form-label {
   color: #1976d2;
   font-weight: 500;
-  margin-bottom: 0.3rem;
   position: absolute;
-  left: 1.2rem;
+  left: 2.7rem;
   top: 1.1rem;
   background: transparent;
   pointer-events: none;
   font-size: 1.05rem;
-  transition: 0.2s cubic-bezier(.4,2,.6,1);
+  transition: 0.2s cubic-bezier(0.4, 2, 0.6, 1);
   z-index: 2;
 }
+
 .customer-form-input:focus + .customer-form-label,
 .customer-form-input:not(:placeholder-shown) + .customer-form-label {
   top: -0.7rem;
@@ -49,6 +57,7 @@
   padding: 0 0.3rem;
   color: #1565c0;
 }
+
 .customer-form-input {
   padding: 1.1rem 1.2rem 0.7rem 2.7rem;
   border: 1.7px solid #b0bec5;
@@ -56,17 +65,17 @@
   font-size: 1.09rem;
   background: #f8fafc;
   color: #263238;
-  min-width: 220px;
-  margin-bottom: 0.4rem;
-  transition: border 0.2s, box-shadow 0.2s;
   width: 100%;
   outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
 }
+
 .customer-form-input:focus {
   border: 1.7px solid #1976d2;
-  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.10);
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.1);
   background: #fff;
 }
+
 .input-icon {
   position: absolute;
   left: 0.8rem;
@@ -77,11 +86,38 @@
   opacity: 0.7;
   z-index: 2;
 }
-.customer-form-error {
-  color: #e53935;
-  font-size: 0.97rem;
-  margin-top: 0.2rem;
+
+.customer-select {
+  appearance: none;
+  background: #f8fafc;
+  padding: 0.8rem 2.2rem 0.8rem 2.7rem;
+  border: 1.7px solid #b0bec5;
+  border-radius: 8px;
+  font-size: 1.09rem;
+  color: #263238;
+  width: 100%;
+  transition: border 0.2s, box-shadow 0.2s;
+  position: relative;
 }
+
+.customer-select:focus {
+  border: 1.7px solid #1976d2;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.1);
+  background: #fff;
+}
+
+.select-icon {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.2rem;
+  height: 1.2rem;
+  color: #1976d2;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
 .customer-form-actions {
   display: flex;
   gap: 1.2rem;
@@ -89,6 +125,7 @@
   align-items: center;
   justify-content: flex-end;
 }
+
 .customer-form-btn {
   background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
   color: #fff;
@@ -102,11 +139,19 @@
   box-shadow: 0 2px 8px rgba(25, 118, 210, 0.13);
   letter-spacing: 0.5px;
 }
+
 .customer-form-btn:hover {
   background: linear-gradient(90deg, #1565c0 60%, #1976d2 100%);
   box-shadow: 0 4px 16px rgba(25, 118, 210, 0.18);
   transform: scale(1.04);
 }
+
+.customer-form-btn:disabled {
+  background: #b0bec5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
 .customer-form-cancel {
   background: #fff;
   color: #1976d2;
@@ -120,122 +165,102 @@
   box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
   letter-spacing: 0.5px;
 }
+
 .customer-form-cancel:hover {
   background: #e3f2fd;
   color: #1565c0;
   transform: scale(1.04);
 }
 
-/* Stylish error and success messages for forms (shared) */
-.customer-form-error, .address-form-error, .customer-form-warning, .address-form-warning {
+.customer-form-error, .customer-form-warning {
   color: #e53935;
   background: #ffebee;
   border-left: 4px solid #e53935;
   padding: 0.7rem 1.2rem;
   border-radius: 8px;
   font-size: 1.08rem;
-  margin-top: 0.7rem;
-  margin-bottom: 0.7rem;
-  box-shadow: 0 2px 8px rgba(229,57,53,0.07);
-  animation: fadeInCard 0.5s cubic-bezier(.4,0,.2,1);
+  margin: 0.7rem 0;
+  box-shadow: 0 2px 8px rgba(229, 57, 53, 0.07);
+  animation: fadeInCard 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
-.customer-form-success, .address-form-success {
+
+.customer-form-success {
   color: #388e3c;
   background: #e8f5e9;
   border-left: 4px solid #388e3c;
   padding: 0.7rem 1.2rem;
   border-radius: 8px;
   font-size: 1.08rem;
-  margin-top: 0.7rem;
-  margin-bottom: 0.7rem;
-  box-shadow: 0 2px 8px rgba(56,142,60,0.07);
-  animation: fadeInCard 0.5s cubic-bezier(.4,0,.2,1);
+  margin: 0.7rem 0;
+  box-shadow: 0 2px 8px rgba(56, 142, 60, 0.07);
+  animation: fadeInCard 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
-.customer-form-warning, .address-form-warning {
+
+.customer-form-warning {
   color: #f9a825;
   background: #fffde7;
   border-left: 4px solid #f9a825;
-  padding: 0.7rem 1.2rem;
-  border-radius: 8px;
-  font-size: 1.08rem;
-  margin-top: 0.7rem;
-  margin-bottom: 0.7rem;
-  box-shadow: 0 2px 8px rgba(251,192,45,0.07);
-  animation: fadeInCard 0.5s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 2px 8px rgba(251, 192, 45, 0.07);
+}
+
+.message-icon {
+  flex-shrink: 0;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+@keyframes fadeInCard {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 900px) {
   .customer-form-card {
-    padding: 0.7rem 0.3rem 0.7rem 0.3rem;
-    max-width: 99vw;
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+    max-width: 100vw;
     min-width: 0;
     border-radius: 12px;
   }
   .customer-form-title {
-    font-size: 1rem;
+    font-size: 1.18rem;
     margin-bottom: 1rem;
   }
-  .customer-form-input {
-    font-size: 0.93rem;
-    padding: 0.7rem 0.7rem 0.4rem 1.3rem;
+  .customer-form-input, .customer-select {
+    font-size: 0.98rem;
+    padding: 1rem 1rem 0.6rem 2.2rem;
+  }
+  .customer-form-btn, .customer-form-cancel {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 600px) {
   .customer-form-card {
-    padding: 0.4rem 0.1rem 0.4rem 0.1rem;
-    max-width: 100vw;
-    min-width: 0;
-    border-radius: 7px;
+    padding: 0.7rem 0.2rem;
+    border-radius: 10px;
   }
   .customer-form-title {
-    font-size: 0.89rem;
+    font-size: 0.98rem;
     margin-bottom: 0.7rem;
   }
-  .customer-form-input {
-    font-size: 0.89rem;
-    padding: 0.5rem 0.5rem 0.3rem 1.1rem;
+  .customer-form-input, .customer-select {
+    font-size: 0.93rem;
+    padding: 0.7rem 0.7rem 0.4rem 1.5rem;
   }
-}
-/* CustomerForm styles */
-.customer-form-container {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 2rem;
-  margin: 2rem auto;
-  max-width: 600px;
-}
-.customer-form-container h2 {
-  color: #1976d2;
-  margin-bottom: 1.5rem;
-}
-.customer-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.customer-form label {
-  font-weight: 500;
-  color: #37474f;
-}
-.customer-form input, .customer-form select {
-  padding: 0.5rem 1rem;
-  border: 1px solid #cfd8dc;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-.customer-form button {
-  background: #1976d2;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 1rem;
-  transition: background 0.2s;
-}
-.customer-form button:hover {
-  background: #1565c0;
+  .customer-form-btn, .customer-form-cancel {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+  }
 }

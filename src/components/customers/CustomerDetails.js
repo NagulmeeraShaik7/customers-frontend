@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { customerApi } from "../../api/customerApi";
 import AddressList from "../addresses/AddressList";
+import Spinner from "../common/Spinner";
 import OnlyOneAddressToggle from "./OnlyOneAddressToggle";
 
 const CustomerDetails = () => {
@@ -23,7 +24,7 @@ const CustomerDetails = () => {
     console.log('CustomerDetails:', customer);
   }
 
-  if (!customer) return <p>Loading...</p>;
+  if (!customer) return <Spinner/>;
 
   return (
     <div className="customer-details-container">
