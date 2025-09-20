@@ -1,70 +1,189 @@
-# Getting Started with Create React App
+# Customers Management Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A **React.js** application for managing customers and their addresses. This project demonstrates **React Router v6**, **API integration using Axios**, **component-based architecture**, and **unit testing with Jest and React Testing Library**.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Project Structure](#project-structure)  
+- [Features](#features)  
+- [Installation](#installation)  
+- [Available Scripts](#available-scripts)  
+- [API Integration](#api-integration)  
+- [Testing](#testing)  
+- [Components Overview](#components-overview)  
+- [License](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Project Structure
 
-### `npm test`
+```
+customers/
+├── node_modules/
+├── public/
+├── src/
+│ ├── api/
+│ │ └── customerApi.js # Axios API functions
+│ ├── components/
+│ │ ├── addresses/
+│ │ │ ├── AddressForm.js
+│ │ │ ├── AddressForm.css
+│ │ │ ├── AddressForm.test.js
+│ │ │ ├── AddressList.js
+│ │ │ ├── AddressList.css
+│ │ │ └── AddressList.test.js
+│ │ ├── common/
+│ │ │ ├── Spinner.js
+│ │ │ ├── Spinner.css
+│ │ │ └── Spinner.test.js
+│ │ └── customers/
+│ │ ├── CustomerList.js
+│ │ ├── CustomerList.css
+│ │ ├── CustomerList.test.js
+│ │ ├── CustomerForm.js
+│ │ ├── CustomerForm.css
+│ │ ├── CustomerForm.test.js
+│ │ ├── CustomerDetails.js
+│ │ ├── CustomerDetails.css
+│ │ ├── CustomerDetails.test.js
+│ │ ├── OnlyOneAddressToggle.js
+│ │ ├── OnlyOneAddressToggle.css
+│ │ └── OnlyOneAddressToggle.test.js
+│ ├── pages/
+│ │ ├── AddAddressPage.js
+│ │ ├── AddAddressPage.test.js
+│ │ ├── ErrorPage.js
+│ │ ├── ErrorPage.css
+│ │ └── ErrorPage.test.js
+│ ├── App.js
+│ ├── App.css
+│ ├── App.test.js
+│ ├── index.js
+│ ├── index.css
+│ ├── reportWebVitals.js
+│ └── setupTests.js
+├── .gitignore
+├── package.json
+├── package-lock.json
+└── babel.config.js
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Customer Management**: View, add, and edit customers.
+- **Address Management**: Add and list addresses for customers.
+- **Routing**: React Router v6 for page navigation.
+- **Error Handling**: Custom error page for API failures and 404 routes.
+- **Loading Indicators**: Spinner component during API calls.
+- **Unit Testing**: Jest and React Testing Library for component and page testing.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Clone the repository:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git clone https://github.com/NagulmeeraShaik7/customers-frontend.git
+cd customers
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+ **2.Install dependencies:**
+```
+npm install
+```
 
-## Learn More
+**3.Start the development server:**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Available Scripts
 
-### Code Splitting
+| Command         | Description                                |
+| --------------- | ------------------------------------------ |
+| `npm start`     | Runs the app in development mode           |
+| `npm run build` | Builds the app for production              |
+| `npm test`      | Runs all unit tests                        |
+| `npm eject`     | Ejects the React scripts (not recommended) |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+# API Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Axios is used for HTTP requests in `src/api/customerApi.js.`
 
-### Making a Progressive Web App
+- Example usage:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```js
+import { customerApi } from './api/customerApi';
 
-### Advanced Configuration
+// Get all customers
+customerApi.list().then(res => console.log(res.data));
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+// Get a customer by ID
+customerApi.getById("123").then(res => console.log(res.data));
+```
 
-### Deployment
+# Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Jest and React Testing Library are used for testing components and pages.
+- Run all tests:
+```
+npm test
+```
 
-### `npm run build` fails to minify
+- Test files are located alongside their respective components:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+src/components/customers/CustomerList.test.js
+src/pages/AddAddressPage.test.js
+```
+
+# Components Overview
+
+**Customers**
+
+- **CustomerList:** Displays list of customers.
+
+- **CustomerForm:**  Add or edit a customer.
+
+- **CustomerDetails:**  View detailed info of a customer.
+
+- **OnlyOneAddressToggle:** Toggle for single address mode.
+
+**Addresses**
+
+- **AddressForm:** Add a new address and Edit address.
+
+- **AddressList:** View all addresses.
+
+**Common**
+
+**Spinner:** Loading indicator.
+
+**Pages**
+
+**AddAddressPage**: Page to add addresses.
+
+**ErrorPage**: Displays errors (supports code and message).
+
+ # Production Url
+
+```
+https://customers-frontend-lovat.vercel.app/ 
+
+```
+
+**Backend Repository:** 
+```
+https://github.com/NagulmeeraShaik7/customers-backend 
+
+```
+
